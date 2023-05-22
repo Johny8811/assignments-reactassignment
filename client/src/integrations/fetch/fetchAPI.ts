@@ -2,6 +2,7 @@ export enum Methods {
     get = "GET",
     post = "POST",
     put = "PUT",
+    delete = "DELETE",
 }
 
 export type Params = {
@@ -43,6 +44,11 @@ export const fetchApi = async ({ url, method = Methods.post, headers, body }: Pa
 
         case Methods.put: {
             const response = await fetch(url, { method: Methods.put, headers, body: bodyString });
+            return handleResponse(response);
+        }
+
+        case Methods.delete: {
+            const response = await fetch(url, { method: Methods.delete, headers });
             return handleResponse(response);
         }
 
