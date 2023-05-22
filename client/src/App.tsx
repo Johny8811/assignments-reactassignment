@@ -9,8 +9,12 @@ export const App: React.FC = () => (
     <ThemeProvider>
         <Container>
             <Layout>
-                <Header handleAddItem={() => console.warn("unimplemented")}>To Do app</Header>
-                <List />
+                <span>
+                    <Header handleAddItem={() => console.warn("unimplemented")}>To Do app</Header>
+                    <List>
+                        <div>abc</div>
+                    </List>
+                </span>
                 <Footer />
             </Layout>
         </Container>
