@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { PlusIcon } from "@radix-ui/react-icons";
@@ -22,9 +22,7 @@ const IconComponent = {
 
 type Props = {
     icon: Icon;
-    type?: string;
-    onClick?: () => void;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button`
     all: unset;
@@ -38,6 +36,10 @@ const StyledButton = styled.button`
     text-align: center;
 `;
 
-export const Button: React.FC<Props> = ({ icon, onClick }) => {
-    return <StyledButton onClick={onClick}>{IconComponent[icon]}</StyledButton>;
+export const Button: React.FC<Props> = ({ icon, type, onClick }) => {
+    return (
+        <StyledButton onClick={onClick} type={type}>
+            {IconComponent[icon]}
+        </StyledButton>
+    );
 };
