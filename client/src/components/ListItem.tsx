@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 
 import { Form } from "./form";
+import { Button, Icon } from "./Button";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -51,12 +51,8 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
                 <Label>{label}</Label>
             )}
             <div>
-                <button onClick={() => handleRemoval()}>
-                    <TrashIcon />
-                </button>
-                <button onClick={handleShowAddTodoForm}>
-                    <Pencil1Icon />
-                </button>
+                <Button icon={Icon.TRASH} onClick={() => handleRemoval()} />
+                <Button icon={Icon.PENCIL} onClick={handleShowAddTodoForm} />
             </div>
         </StyledDiv>
     );
