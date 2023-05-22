@@ -18,13 +18,14 @@ const StyledDiv = styled.header`
         color: #fff;
         width: 25px;
         height: 25px;
+        text-align: center;
     }
 `;
 
 export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => (
     <StyledDiv>
         <h1>{children}</h1>
-        <button onClick={() => handleAddItem()}>
+        <button onClick={handleAddItem}>
             <PlusIcon />
         </button>
     </StyledDiv>
