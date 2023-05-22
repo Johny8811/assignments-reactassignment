@@ -6,7 +6,7 @@ import { Form } from "./form";
 
 export type HeaderProps = {
     children: React.ReactNode;
-    handleAddItem: () => void;
+    handleAddItem: (value: string) => void;
 };
 
 const StyledDiv = styled.header`
@@ -35,13 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
         <StyledDiv>
             <h1>{children}</h1>
             {formShown ? (
-                <Form
-                    handleCancel={handleShowAddTodoForm}
-                    handleSubmit={(v) => {
-                        // TODO: submit
-                    }}
-                    initialValue=""
-                />
+                <Form handleCancel={handleShowAddTodoForm} handleSubmit={handleAddItem} initialValue="" />
             ) : (
                 <button onClick={handleShowAddTodoForm}>
                     <PlusIcon />
