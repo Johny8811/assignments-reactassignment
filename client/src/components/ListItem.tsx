@@ -51,7 +51,7 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
                 <Label>{label}</Label>
             )}
             <div>
-                <button onClick={() => handleEdit()}>
+                <button onClick={() => handleRemoval()}>
                     <TrashIcon />
                 </button>
                 <button onClick={handleShowAddTodoForm}>
