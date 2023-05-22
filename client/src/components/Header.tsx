@@ -35,10 +35,10 @@ export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
     const handleShowAddTodoForm = () => setFormShown((v) => !v);
 
     useEffect(() => {
-        if (!loading[LOADING_ENUM.ADD_TODO_ITEM]) {
-            handleShowAddTodoForm();
+        if (formShown && !loading[LOADING_ENUM.ADD_TODO_ITEM]) {
+            setFormShown(false);
         }
-    }, [loading]);
+    }, [loading, formShown]);
 
     return (
         <StyledDiv>
