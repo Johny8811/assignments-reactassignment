@@ -2,16 +2,14 @@ import { fetchApi, Methods } from "../integrations/fetch/fetchAPI";
 import { useLoading } from "../integrations/fetch/LoadingProvider";
 
 import { TODO_ITEMS, LOADING_ENUM } from "./enpoints";
+import { Todo } from "./getTodoItemsHook";
 
-type Todo = {
-    title: string;
-    done: boolean;
-};
+type AddTodo = Pick<Todo, "title" | "done">;
 
 export const addTodoItemHook = () => {
     const { startLoading, stopLoading } = useLoading();
 
-    return async (todo: Todo) => {
+    return async (todo: AddTodo) => {
         startLoading?.(LOADING_ENUM.ADD_TODO_ITEM);
 
         await fetchApi({
