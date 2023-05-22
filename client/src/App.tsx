@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Container } from "./components/Container";
 import { Layout } from "./components/Layout";
@@ -47,6 +47,13 @@ export const App: React.FC = () => {
         handleFetchTodoItems();
     }, []);
 
+    const todoItemsStatistics = useMemo(() => {
+        return {
+            todoItems: todoItems?.length,
+            doneItems: todoItems?.filter((i) => i.done).length,
+        };
+    }, [todoItems]);
+
     return (
         <ThemeProvider>
             <Container>
@@ -64,7 +71,7 @@ export const App: React.FC = () => {
                             ))}
                         </List>
                     </span>
-                    <Footer />
+                    <Footer todoItems={todoItemsStatistics.todoItems} doneItems={todoItemsStatistics.doneItems} />
                 </Layout>
             </Container>
         </ThemeProvider>
