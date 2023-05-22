@@ -16,18 +16,24 @@ export const App: React.FC = () => {
     const addTodoItem = addTodoItemHook();
     const getTodoItems = getTodoItemsHook();
 
-    const handleAddItem = useCallback((v: string) => {
-        void addTodoItem({
-            done: false,
-            title: v,
-        });
-    }, []);
-
-    useEffect(() => {
+    const handleFetchTodoItems = () => {
+        // TODO: improvements: handle catch error
         getTodoItems().then((data) => {
             setTodoItems(data);
         });
-        // TODO: improvements: handle catch error
+    };
+
+    const handleAddItem = useCallback(async (v: string) => {
+        await addTodoItem({
+            done: false,
+            title: v,
+        });
+
+        handleFetchTodoItems();
+    }, []);
+
+    useEffect(() => {
+        handleFetchTodoItems();
     }, []);
 
     return (
