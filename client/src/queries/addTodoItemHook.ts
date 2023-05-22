@@ -1,7 +1,7 @@
 import { fetchApi, Methods } from "../integrations/fetch/fetchAPI";
 import { useLoading } from "../integrations/fetch/LoadingProvider";
 
-import { TODO_ITEMS } from "./enpoints";
+import { TODO_ITEMS, LOADING_ENUM } from "./enpoints";
 
 type Todo = {
     title: string;
@@ -12,7 +12,7 @@ export const addTodoItemHook = () => {
     const { startLoading, stopLoading } = useLoading();
 
     return async (todo: Todo) => {
-        startLoading?.(TODO_ITEMS);
+        startLoading?.(LOADING_ENUM.ADD_TODO_ITEM);
 
         await fetchApi({
             url: TODO_ITEMS,
@@ -23,6 +23,6 @@ export const addTodoItemHook = () => {
             },
         });
 
-        stopLoading?.(TODO_ITEMS);
+        stopLoading?.(LOADING_ENUM.ADD_TODO_ITEM);
     };
 };
