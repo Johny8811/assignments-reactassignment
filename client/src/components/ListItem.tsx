@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 
+import { Form } from "./form";
+
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 
     div {
         visibility: hidden;
@@ -34,17 +37,27 @@ export type LiteItemProp = CheckboxProps & {
     handleRemoval: () => void;
 };
 
-export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleEdit, ...checkboxProps }) => (
-    <StyledDiv>
-        <Checkbox {...checkboxProps} />
-        <Label>{label}</Label>
-        <div>
-            <button onClick={() => handleEdit()}>
-                <TrashIcon />
-            </button>
-            <button onClick={() => handleRemoval()}>
-                <Pencil1Icon />
-            </button>
-        </div>
-    </StyledDiv>
-);
+export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleEdit, ...checkboxProps }) => {
+    const [formShown, setFormShown] = useState<boolean>(false);
+
+    const handleShowAddTodoForm = () => setFormShown((v) => !v);
+
+    return (
+        <StyledDiv>
+            <Checkbox {...checkboxProps} />
+            {formShown ? (
+                <Form handleCancel={handleShowAddTodoForm} handleSubmit={() => {}} initialValue={label} />
+            ) : (
+                <Label>{label}</Label>
+            )}
+            <div>
+                <button onClick={() => handleEdit()}>
+                    <TrashIcon />
+                </button>
+                <button onClick={handleShowAddTodoForm}>
+                    <Pencil1Icon />
+                </button>
+            </div>
+        </StyledDiv>
+    );
+};
