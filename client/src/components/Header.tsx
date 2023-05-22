@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
 
+import { useLoading } from "../integrations/fetch/LoadingProvider";
+import { ADD_TODO_ITEM } from "../queries/enpoints";
 import { Form } from "./form";
 
 export type HeaderProps = {
@@ -27,9 +29,16 @@ const StyledDiv = styled.header`
 `;
 
 export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
+    const { loading } = useLoading();
     const [formShown, setFormShown] = useState<boolean>(false);
 
     const handleShowAddTodoForm = () => setFormShown((v) => !v);
+
+    useEffect(() => {
+        if (!loading[ADD_TODO_ITEM]) {
+            handleShowAddTodoForm();
+        }
+    }, [loading]);
 
     return (
         <StyledDiv>
