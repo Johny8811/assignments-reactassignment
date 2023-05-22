@@ -9,10 +9,17 @@ const StyledDiv = styled.div`
     align-items: center;
 
     div {
+        visibility: hidden;
         margin-left: auto;
 
         button {
             margin-left: 5px;
+        }
+    }
+
+    :hover {
+        div {
+            visibility: visible;
         }
     }
 `;
