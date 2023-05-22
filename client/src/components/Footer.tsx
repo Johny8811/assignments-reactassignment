@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledDiv = styled.footer`
     display: flex;
+    justify-content: space-between;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid;
@@ -15,7 +16,7 @@ export type FooterProps = {
 };
 export const Footer: React.FC<FooterProps> = ({ todoItems, doneItems }) => (
     <StyledDiv>
-        Todo: {todoItems || "0"}
-        Done: {doneItems || "0"}
+        <span>Todo: {todoItems || "0"}</span>
+        <span>Done: {doneItems || "0"}</span>
     </StyledDiv>
 );
