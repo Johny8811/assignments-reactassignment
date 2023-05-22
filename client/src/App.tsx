@@ -43,6 +43,10 @@ export const App: React.FC = () => {
         []
     );
 
+    const handleEditItm = useCallback(() => {
+        // TODO: implement edit
+    }, []);
+
     useEffect(() => {
         handleFetchTodoItems();
     }, []);
@@ -65,7 +69,7 @@ export const App: React.FC = () => {
                                 <ListItem
                                     key={i.id}
                                     label={i.title}
-                                    handleEdit={() => {}}
+                                    handleEdit={handleEditItm}
                                     handleRemoval={handleRemoveItem(i.id)}
                                 />
                             ))}

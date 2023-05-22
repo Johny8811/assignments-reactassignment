@@ -46,7 +46,7 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
         <StyledDiv>
             <Checkbox {...checkboxProps} />
             {formShown ? (
-                <Form handleCancel={handleShowAddTodoForm} handleSubmit={() => {}} initialValue={label} />
+                <Form handleCancel={handleShowAddTodoForm} handleSubmit={handleEdit} initialValue={label} />
             ) : (
                 <Label>{label}</Label>
             )}
