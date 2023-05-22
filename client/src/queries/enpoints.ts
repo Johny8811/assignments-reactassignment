@@ -1,2 +1,3 @@
 const BASE = "http://localhost:3000";
-export const ADD_TODO_ITEM = `${BASE}/items`;
+
+export const TODO_ITEMS = `${BASE}/items`;

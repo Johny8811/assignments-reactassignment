@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 import { useLoading } from "../integrations/fetch/LoadingProvider";
-import { ADD_TODO_ITEM } from "../queries/enpoints";
+import { TODO_ITEMS } from "../queries/enpoints";
 import { Form } from "./form";
 
 export type HeaderProps = {
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
     const handleShowAddTodoForm = () => setFormShown((v) => !v);
 
     useEffect(() => {
-        if (!loading[ADD_TODO_ITEM]) {
+        if (!loading[TODO_ITEMS]) {
             handleShowAddTodoForm();
         }
     }, [loading]);
