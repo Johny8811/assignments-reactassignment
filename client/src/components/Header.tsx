@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
         if (formShown && !loading[LOADING_ENUM.ADD_TODO_ITEM]) {
             setFormShown(false);
         }
-    }, [loading, formShown]);
+    }, [loading]);
 
     return (
         <StyledDiv>
